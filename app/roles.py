@@ -33,7 +33,6 @@ class ReadOnly(CountryMixin):
 
 
 class External(ReadOnly):
-
     def get_exclude(self, request, obj=None):
         return [
             'description', 'picture_image',

@@ -1,6 +1,3 @@
-
-
-
 class RoleMixin:
     """
     A mixin for ModelAdmin.

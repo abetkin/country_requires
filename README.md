@@ -41,6 +41,6 @@ Then you can run the server:
 Implementation
 ------
 
-The project uses its own `users.User` model, adding a required `role` field. A custom permission system is implemented with `users.permissions.RoleMixin`.
+The project uses its own [`users.User`](https://github.com/abetkin/country_requires/blob/master/users/models.py#L7) model, adding a required `role` field. A custom permission system is implemented with [`users.permissions.RoleMixin`](https://github.com/abetkin/country_requires/blob/master/users/permissions.py).
 
 To see it in use go to the [`app.roles`](https://github.com/abetkin/country_requires/blob/master/app/roles.py) module.
