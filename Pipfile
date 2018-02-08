@@ -9,11 +9,11 @@ name = "pypi"
 
 django = "*"
 pillow = "*"
+django-extensions = "*"
 
 
 [dev-packages]
 
-django-extensions = "*"
 pylint = "*"
 ipdb = "*"
 
