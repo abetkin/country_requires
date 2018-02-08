@@ -1,0 +1,12 @@
+*.egg-info
+*.pyc
+__pycache__
+dist/
+build/
+/.tox
+.hypothesis
+.cache
+.eggs
+*~
+*.sqlite3
+*.jpg
