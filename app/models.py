@@ -4,7 +4,7 @@ from django.utils.html import format_html
 class Country(models.Model):
     ISO_CODE = models.CharField(max_length=10)
     name = models.CharField(max_length=200, db_column='country_name')
-    users = models.ManyToManyField('auth.User')
+    users = models.ManyToManyField('users.User')
 
     def __str__(self):
         return self.name
@@ -28,6 +28,7 @@ class Requirement(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class CountryRequirement(Requirement):
     country = models.OneToOneField('Country', on_delete=models.CASCADE)

@@ -3,9 +3,12 @@ from django.contrib import admin
 from django import forms
 from django.forms import formsets
 
+from .roles import Editor, ReadOnly
+
 
 from .models import *
 from .forms import Link, PropertyField
+from users.permissions import RoleMixin
 
 class RequirementsInlineForm(forms.ModelForm):
     change_history = PropertyField(
@@ -32,10 +35,12 @@ class RequirementsInline(admin.TabularInline):
 
 
 @admin.register(Country)
-class CountryAdmin(admin.ModelAdmin):
+class CountryAdmin(RoleMixin, admin.ModelAdmin):
     inlines = [
         RequirementsInline
     ]
+
+    from app import roles
 
 inverse_status_choices = {v: k for k, v in Requirement.STATUS_CHOICES}
 
@@ -58,8 +63,14 @@ def set_deleted_status(modeladmin, request, queryset):
 set_deleted_status.short_description = f"Set DELETED status"
 
 @admin.register(Requirement)
-class RequirementAdmin(admin.ModelAdmin):
+class RequirementAdmin(RoleMixin, admin.ModelAdmin):
+    from app import roles
+
     actions = [set_published_status, set_draft_status, set_deleted_status]
+
+    list_display = [
+        'name', 'description', 'picture_image', 'status',
+    ]
 
     def get_actions(self, *args, **kw):
         actions = super().get_actions(*args, **kw)
