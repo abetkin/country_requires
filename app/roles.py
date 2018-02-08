@@ -1,5 +1,4 @@
 
-from django.db.models import F
 from .models import Requirement
 
 class Admin:
@@ -34,10 +33,6 @@ class ReadOnly(CountryMixin):
 
 
 class External(ReadOnly):
-    
-    def get_queryset(self, request):
-        qs = CountryMixin.get_queryset(self, request)
-        return qs.only('name')
 
     def get_exclude(self, request, obj=None):
         return [
