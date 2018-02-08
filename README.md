@@ -43,4 +43,4 @@ Implementation
 
 The project uses its own `users.User` model, adding a required `role` field. A custom permission system is implemented with `users.permissions.RoleMixin`.
 
-To see it in use go to the `app.roles` module.
+To see it in use go to the [`app.roles`](https://github.com/abetkin/country_requires/blob/master/app/roles.py) module.
