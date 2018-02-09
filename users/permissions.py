@@ -1,8 +1,6 @@
 class RoleMixin:
     """
     A mixin for ModelAdmin.
-
-    To call super implementation please use self.super().
     """
 
     @property
@@ -16,7 +14,7 @@ class RoleMixin:
         if hasattr(role_cls, attr):
             func = getattr(role_cls, attr)
             return func(self, request, *args, **kw)
-        return getattr(self.super(), attr)(request, *args, **kw)
+        return getattr(super(), attr)(request, *args, **kw)
 
     def get_model_perms(self, request):
         return self.dispatch('get_model_perms', request)
@@ -37,8 +35,9 @@ class RoleMixin:
         return self.dispatch('get_exclude', request, obj=obj)
 
     def get_list_display(self, request):
-        li = self.super().get_list_display(request)
-        return [f for f in li if f not in self.get_exclude(request)]
+        list_display = super().get_list_display(request)
+        exclude = self.get_exclude(request) or []
+        return [f for f in list_display if f not in exclude]
 
     def super(self):
-        return super(RoleMixin, self)
+        return super()
